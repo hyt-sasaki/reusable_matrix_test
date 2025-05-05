@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        some: [true, false]
+        some: ["true", "false"]
     uses: ./.github/workflows/logic.yml
     with:
         some: ${{ matrix.some }}
