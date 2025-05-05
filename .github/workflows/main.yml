@@ -5,6 +5,7 @@ jobs:
   reusable-matrix-test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         some: [true, false]
     steps:
@@ -19,4 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check dependencies
-      run: echo "Checking dependencies"
+      run: |
+        echo "RESULT: $RESULT"
+      env:
+        RESULT: ${{ needs.reusable-matrix-test.result }}
