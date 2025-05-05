@@ -19,5 +19,6 @@ jobs:
     - name: Check dependencies
       run: |
         echo "RESULT: $RESULT"
+        test "$RESULT" != "failure"
       env:
         RESULT: ${{ needs.reusable-matrix-test.result }}
