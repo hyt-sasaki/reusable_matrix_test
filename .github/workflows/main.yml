@@ -3,16 +3,13 @@ on:
 
 jobs:
   reusable-matrix-test:
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         some: [true, false]
-    steps:
-    - name: Run logic
-      uses: ./.github/workflows/logic.yml
-      with:
-          some: ${{ matrix.some }}
+    uses: ./.github/workflows/logic.yml
+    with:
+        some: ${{ matrix.some }}
   check-deps:
     if: ${{ always() }}
     needs:

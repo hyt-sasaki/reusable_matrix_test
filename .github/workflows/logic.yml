@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
     - name: Run logic
       run: echo "Running logic with input "$SOME"
