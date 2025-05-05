@@ -2,11 +2,24 @@ on:
   workflow_dispatch:
 
 jobs:
+  list-targets:
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.list-targets.outputs.targets }}
+    steps:
+    - name: List targets
+      id: list-targets
+      run: |
+        echo "Listing targets"
+        echo "targets=[\"true\", \"false\"]" >> "$GITHUB_OUTPUT"
   reusable-matrix-test:
+    if: ${{ needs.list-targets.outputs.targets != '[]' }}
+    needs:
+      - list-targets
     strategy:
       fail-fast: false
       matrix:
-        some: ["true", "false"]
+        some: ${{ fromJson(needs.list-targets.outputs.targets) }}
     uses: ./.github/workflows/logic.yml
     with:
         some: ${{ matrix.some }}
