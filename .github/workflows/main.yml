@@ -4,7 +4,7 @@ on:
       target-json-arg:
         description: 'JSON array of targets'
         required: true
-        default: '["true", "false"]'
+        default: '["target1", "target2"]'
 
 jobs:
   list-targets:
