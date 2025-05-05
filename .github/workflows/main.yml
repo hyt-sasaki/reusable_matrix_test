@@ -1,5 +1,10 @@
 on:
   workflow_dispatch:
+    inputs:
+      target-json-arg:
+        description: 'JSON array of targets'
+        required: true
+        default: '["true", "false"]'
 
 jobs:
   list-targets:
@@ -10,9 +15,9 @@ jobs:
     - name: List targets
       id: list-targets
       run: |
-        echo "Listing targets"
-        # echo "targets=[\"true\", \"false\"]" >> "$GITHUB_OUTPUT"
-        echo "targets=[\"true\"]" >> "$GITHUB_OUTPUT"
+        echo "targets=${TARGET_JSON_ARG}" >> "$GITHUB_OUTPUT"
+      env:
+        TARGET_JSON_ARG: ${{ github.event.inputs.target-json-arg }}
   reusable-matrix-test:
     if: ${{ needs.list-targets.outputs.targets != '[]' }}
     needs:
