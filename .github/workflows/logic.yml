@@ -1,0 +1,20 @@
+# dummy
+on:
+  workflow_call:
+    inputs:
+      some:
+        required: true
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run logic
+      run: echo "Running logic with input "$SOME"
+      env:
+        SOME: ${{ inputs.some }}
+    - name: Run logic
+      run: test "$SOME" = "true"
+      env:
+        SOME: ${{ inputs.some }}

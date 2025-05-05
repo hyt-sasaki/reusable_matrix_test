@@ -1,0 +1,22 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  reusable-matrix-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        some: [true, false]
+    steps:
+    - name: Run logic
+      uses: ./.github/workflows/logic.yml
+      with:
+          some: ${{ matrix.some }}
+  check-deps:
+    if: ${{ always() }}
+    needs:
+      - reusable-matrix-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check dependencies
+      run: echo "Checking dependencies"
