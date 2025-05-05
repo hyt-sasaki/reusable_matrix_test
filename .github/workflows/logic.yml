@@ -12,10 +12,12 @@ jobs:
     continue-on-error: true
     steps:
     - name: Run logic
-      run: echo "Running logic with input "$SOME"
+      run: |
+        echo "Running logic with input $SOME"
       env:
         SOME: ${{ inputs.some }}
     - name: Run logic
-      run: test "$SOME" = "true"
+      run: |
+        test "$SOME" = "true"
       env:
         SOME: ${{ inputs.some }}
