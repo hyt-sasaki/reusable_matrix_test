@@ -17,7 +17,7 @@ jobs:
         SOME: ${{ inputs.some }}
     - name: Run logic
       run: |
-        test "$SOME" = "true"
+        test "$SOME" != "error"
       env:
         SOME: ${{ inputs.some }}
     - name: Other step

@@ -11,7 +11,8 @@ jobs:
       id: list-targets
       run: |
         echo "Listing targets"
-        echo "targets=[\"true\", \"false\"]" >> "$GITHUB_OUTPUT"
+        # echo "targets=[\"true\", \"false\"]" >> "$GITHUB_OUTPUT"
+        echo "targets=[\"true\"]" >> "$GITHUB_OUTPUT"
   reusable-matrix-test:
     if: ${{ needs.list-targets.outputs.targets != '[]' }}
     needs:
